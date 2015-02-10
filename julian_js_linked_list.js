@@ -28,20 +28,40 @@ LinkedList.prototype.walkThroughList = function(){
 	var index = 0
 
 	while (currentNode != null){
-		console.log("index: " + index + "value: " + currentNode.value)
+		console.log("index: " + index + " value: " + currentNode.value)
+		console.log(this.size)
 		currentNode = currentNode.pointer
 		index += 1
 	}
 }
 
+LinkedList.prototype.removeAtIndex = function(value){
+	var currentNode = 0
+	var nodeInFront = this.head
+
+	while (currentNode < value - 1){
+		nodeInFront = nodeInFront.pointer
+		currentNode += 1
+	}
+	var nodeToRemove = nodeInFront.pointer
+	nodeInFront.pointer = nodeToRemove.pointer
+	this.size -= 1
+}
+
+
+
 var myList = new LinkedList()
 
-myList.insertNode(1)
+myList.insertNode(4)
 
-myList.insertNode(2)
+myList.insertNode(5)
+
+myList.insertNode(6)
+
+myList.insertNode(7)
 
 myList.insertNode(3)
 
-myList.insertNode(4)
+myList.removeAtIndex(4)
 
 myList.walkThroughList()
