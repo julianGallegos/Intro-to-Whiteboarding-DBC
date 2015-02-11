@@ -13,6 +13,7 @@ function LinkedList(){
 LinkedList.prototype.insertNode = function(value){
 	if (this.head === null){
 		this.head = new Node(value)
+		this.size += 1
 	} else {
 		var current = this.head;
 		while(current.pointer != null){
@@ -61,6 +62,18 @@ LinkedList.prototype.addValueAtIndex = function(value, index){
 	this.size += 1
 }
 
+LinkedList.prototype.reverseLinkedList = function(){
+	var currentNode = this.head
+	var previousNode = null
+	while (currentNode != null){
+		var nextNode = currentNode.pointer
+		currentNode.pointer = previousNode
+		previousNode = currentNode
+		currentNode = nextNode
+	}
+	this.head = previousNode
+}
+
 var myList = new LinkedList()
 
 myList.insertNode(1)
@@ -73,5 +86,10 @@ myList.insertNode(4)
 
 myList.insertNode(5)
 
+
+myList.reverseLinkedList()
+
 myList.walkThroughList()
+
+
 
