@@ -48,20 +48,30 @@ LinkedList.prototype.removeAtIndex = function(value){
 	this.size -= 1
 }
 
-
+LinkedList.prototype.addValueAtIndex = function(value, index){
+	var currentNode = 0
+	var nodeBeforeIndex = this.head
+	while (currentNode < index - 1){
+		nodeBeforeIndex = nodeBeforeIndex.pointer
+		currentNode += 1
+	}
+	var nodeAfterIndex = nodeBeforeIndex.pointer
+	nodeBeforeIndex.pointer = new Node(value)
+	nodeBeforeIndex.pointer.pointer = nodeAfterIndex
+	this.size += 1
+}
 
 var myList = new LinkedList()
+
+myList.insertNode(1)
+
+myList.insertNode(2)
+
+myList.insertNode(3)
 
 myList.insertNode(4)
 
 myList.insertNode(5)
 
-myList.insertNode(6)
-
-myList.insertNode(7)
-
-myList.insertNode(3)
-
-myList.removeAtIndex(4)
-
 myList.walkThroughList()
+
